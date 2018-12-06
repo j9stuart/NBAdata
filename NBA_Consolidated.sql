@@ -21,7 +21,8 @@ id INTEGER PRIMARY KEY,
 player_name TEXT,
 birth_date DATETIME, 
 height TEXT,
-name_height TEXT
+name_height TEXT,
+zodiac TEXT
 );
 
 SELECT  name_height, count(player_name)
