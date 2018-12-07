@@ -25,17 +25,22 @@ name_height TEXT,
 zodiac TEXT
 );
 
+
 SELECT  name_height, count(player_name)
 FROM player_birth_date
 GROUP BY name_height 
 having count(player_name) > 1;
 
-
-
-SELECT player_birth_date.birth_date, sum(player_week.real_value) as '# of Player of the Week Award'
+drop view Zodiac_Player_of_the_Week;
+CREATE VIEW Zodiac_Player_of_the_Week AS
+SELECT player_birth_date.zodiac, sum(player_week.real_value) as '# of Player of the Week Award'
 FROM player_week
 INNER JOIN player_birth_date ON player_birth_date.player_name=player_week.player_name
-GROUP BY birth_date;
+GROUP BY zodiac
+ORDER BY sum(player_week.real_value) desc;
+
+
+select * from Zodiac_Player_of_the_Week;
 
 
 select player_name, sum(real_value) as '# of Player of the Week Award'
